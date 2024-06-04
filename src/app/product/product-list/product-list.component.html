@@ -1,0 +1,52 @@
+<div class="card border-primary mb-3 text-center">
+    <div class="card-header">Lista de Productos</div>
+    <div class="card-body text-primary">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>
+                <button class="btn btn-primary" (click)="toggleImage()">
+                  <i-bs name="eye-fill" width="20" height="20"></i-bs>
+                  {{showImage ? 'Ocultar': 'Mostrar'}} Imagenes
+                </button>
+              </th>
+              <th>Producto</th>
+              <th>Codigo</th>
+              <th>Disponible</th>
+              <th>Precio</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          @for (product of products; track product) {
+          <tr>
+            <td>
+
+            @if (showImage) {<img [src]="product.imageUrl | default:'../../assets/sin-imagen.png'" [title]="product.productName | uppercase" [style.width.px]='imageWidth' [style.margin.px]='imageMargin'>}
+            </td>
+            <td style="color: black;">{{product.productName}}</td>
+            <td style="color: black;">{{product.productCode | lowercase}}</td>
+            <td style="color: black;">{{product.releaseDate | date:'dd/MM/yyyy'}}</td>
+            <td style="color: black;">{{product.price | currency:'EUR ':true:'1.2-2'}}</td>
+            <td><app-star [rating]="product.starRating"></app-star></td>
+            <td>
+              <button class="btn btn-succes" (click)="viewProduct(product)">
+                <i class="fa fa-eye"></i> Ver
+              </button>
+              &nbsp;
+              <button class="btn btn-warning" (click)="updateProduct(product.productId, product)">
+                <i class="fas fa-pencil-alt"></i> Editar
+              </button>
+              &nbsp;
+              <button class="btn btn-danger" (click)="deleteProduct(product.productId)">
+                <i class="fas fa-trahs-alt"></i> Borrar
+              </button>
+            </td>
+          </tr>
+          }@empty {
+            <td>No existen Elementos</td>
+          }
+        </table>
+      </div>
+    </div>
+  </div>
