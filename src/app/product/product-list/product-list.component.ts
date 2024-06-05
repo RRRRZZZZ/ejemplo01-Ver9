@@ -13,7 +13,7 @@ export class ProductListComponent implements OnInit{
   imageMargin:number = 50;
   showImage: boolean = false;
 
-  constructor(private productService: ProductService){}
+  constructor(public productService: ProductService){}
 
   ngOnInit(){}
 

@@ -2,6 +2,7 @@
     <div class="card-header">Lista de Productos</div>
     <div class="card-body text-primary">
       <div class="table-responsive">
+        @if (this.productService.products && this.productService.products.length) {
         <table class="table">
           <thead>
             <tr>
@@ -18,7 +19,7 @@
               <th>Rating</th>
             </tr>
           </thead>
-          @for (product of products; track product) {
+          @for (product of productService.filteredProducts; track product) {
           <tr>
             <td>
 
@@ -47,6 +48,7 @@
             <td>No existen Elementos</td>
           }
         </table>
+      }
       </div>
     </div>
   </div>
