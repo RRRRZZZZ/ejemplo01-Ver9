@@ -1,48 +1,60 @@
 <div class="modal"   tabindex="-1" role="dialog" [ngStyle]="{'display': modalService.oculto}" >
     <div class="modal-dialog">
       <div class="modal-content">
+        <form [formGroup]="formProduct" (ngSubmit)="saveData()" novalidate>
         <div class="modal-header">
           <h1 class="modal-title fs-5" id="exampleModalLabel">Crear producto</h1>
           <button (click)="ocultarModal()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           
-
+           
             <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Nombre</span>
-                <input type="text" class="form-control"  >
+                <input formControlName="name"  type="text" class="form-control"  >
+                <div class="alert alert-danger" *ngIf="formProduct.get('name')?.errors && (formProduct.get('name')?.touched || formProduct.get('name')?.dirty)">El nombre del producto es obligatorio</div>
               </div>
 
               
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Fecha</span>
-                <input type="date" class="form-control"  >
+                <input formControlName="date" type="date" class="form-control"  >
               </div>
 
               
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Precio</span>
-                <input type="number" class="form-control" >
+                <input formControlName="price" type="number" class="form-control" >
+                <div class="alert alert-danger" *ngIf="formProduct.get('price')?.errors && (formProduct.get('price')?.touched || formProduct.get('price')?.dirty)">El nombre del producto es obligatorio</div>
               </div>
               
-              <div class="input-group mb-3">
+              <div  class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Valoracion</span>
-                <input type="text" class="form-control" >
+                <input formControlName="rating"  type="text" class="form-control" >
               </div>
               
 
               <div class="input-group mb-3">
                 <span class="input-group-text" id="basic-addon1">Descripcion</span>
-                <input type="text" class="form-control">
+                <input formControlName="description" type="text" class="form-control">
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Código</span>
+                <input formControlName="code" type="text" class="form-control">
+                <span *ngIf="formProduct.get('code')?.pending">Buscando ...</span>
+                <div *ngIf="formProduct.get('code')?.errors && formProduct.get('code')?.errors?.['existe']">El codigo ya existe</div>
               </div>
               
+              
+           
 
 
         </div>
         <div class="modal-footer">
           <button (click)="ocultarModal()" type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="submit" class="btn btn-primary" [disabled]="!formProduct.valid">Save changes</button>
         </div>
+    </form>
       </div>
     </div>
   </div>

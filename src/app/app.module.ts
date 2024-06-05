@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 
 import { NgxBootstrapIconsModule, allIcons } from 'ngx-bootstrap-icons';
 import { ProductListComponent } from './product/product-list/product-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IProduct } from './product';
 import { StarComponent } from './product/product-list/star/star.component';
 import { LOCALE_ID } from '@angular/core';
@@ -30,7 +30,8 @@ registerLocaleData(localEsCL, 'es-CL')
     AppRoutingModule,
     NgxBootstrapIconsModule.pick(allIcons),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
     
   ],
   providers: [{provide: LOCALE_ID, useValue : 'es-CL'}],

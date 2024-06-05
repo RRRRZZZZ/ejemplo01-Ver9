@@ -1,13 +1,20 @@
 import { Injectable } from '@angular/core';
 import { IProduct } from '../product';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, timer } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { code } from 'ngx-bootstrap-icons';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  searchProducts(code: any) {
+    return timer(1000).pipe(switchMap(() => {
+      return this.http.get<any>('http://localhost:3000/existeproducto/'+code)
+      .pipe(map((res:any) => res.data));
+    }))
+  }
   filteredProducts!: IProduct[];
   products!: IProduct[];
 
