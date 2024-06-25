@@ -1,31 +1,142 @@
-<nav class="nav navbar-expand navbar-dark bg-primary">
-  <a class="navbar-brand" href="#">
-    <img width="100" alt="ACME Logo" src="../assets/logo-acme.png" />
-  </a>
-  <div>
-    <h1 id="titulo">{{ title }}</h1>
-  </div>
-</nav>
-<br />
-<div class="row fil">
-  <div class="col-md-2">Filtrar por:</div>
-  <div class="col-md-4">
-    <input type="text" [(ngModel)]="listFilter"/>
-  </div>
-  <div class="col-md-4">
-    Filtrado por: {{listFilter}}
-  </div>
-  <div class="col-md-2">
-    <button class="btn btn-primary" (click)="abrirModal()">
-    Crear Producto
-    </button>
-  </div>
-</div>
-<br />
-<div class="card">
-  <div class="card-body">
-    <app-product-list ></app-product-list>
-  </div>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Simple Sidebar - Start Bootstrap Template</title>
+  </head>
 
-<app-modal-add></app-modal-add>
+  <body>
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <!----------------------------------------------------->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">
+          <div class="user-panel">
+            <div class="pull-left image">
+              <img
+                width="100"
+                alt="ACME Logo"
+                class="rounded-circle"
+                src="../assets/logo-acme.png"
+              />
+            </div>
+            <div>
+              <p id="titulo">Empresa ACME</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Menu -->
+        <div class="sidebar left">
+          <ul class="list-sidebar bg-defoult">
+            <li>
+              <a [routerLink]="['welcome']"><i class="fas fa-home"></i>Home</a>
+            </li>
+            <li>
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#productos"
+                class="collapsed active"
+              >
+                <i class="fa fa-th-large"></i>
+                <span class="nav-label">Productos </span>
+                <span class="fa fa-chevron-left pull-right"></span>
+              </a>
+              <ul class="sub-menu collapse" id="productos">
+                <li>
+                  <a [routerLink]="['product/product-list']"
+                    ><i class="fa fa-shopping-cart"></i>Administrar</a
+                  >
+                </li>
+                <li><a href="">Ver fichas</a></li>
+                <li><a href=""> Informes</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="#"
+                ><i class="fas fa-tachometer-alt"></i
+                ><span class="nav-label">Dashboard</span></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                data-toggle="collapse"
+                data-target="#usuarios"
+                class="collapsed active"
+                ><i class="fas fa-users"></i>
+                <span class="nav-label">Usuarios</span
+                ><span class="fa fa-chevron-left pull-right"></span
+              ></a>
+              <ul class="sub-menu collapse" id="usuarios">
+                <li><a href=""> Administrar</a></li>
+                <li><a href=""> Ver fichas</a></li>
+                <li><a href=""> Informes</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <!-- Superior Bar -->
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
+        >
+          <!-- Superior menu -->
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#"
+                  >Home <span class="sr-only">(current)</span></a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Link</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                  Dropdown
+                </a>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="navbarDropdown"
+                >
+                  <a class="dropdown-item" href="#">Action</a>
+                  <a class="dropdown-item" href="#">Another action</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <!-- Inner Content -->
+        <div class="container-fluid">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+  </body>
+</html>
